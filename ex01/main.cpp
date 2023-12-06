@@ -6,7 +6,7 @@
 /*   By: larmenou <larmenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 13:05:49 by larmenou          #+#    #+#             */
-/*   Updated: 2023/12/01 15:02:59 by larmenou         ###   ########.fr       */
+/*   Updated: 2023/12/05 12:54:09 by larmenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,36 +29,55 @@ int main(void)
 	
 	i = 0;
 	lst = book.get_contact();
+	std::cout << "Enter one of three commands : ADD, SEARCH, EXIT" << std::endl;
 	while (cmd != "EXIT")
 	{
+		if (!std::cin.good())
+			exit(1);
 		std::cout << "> ";
-		std::getline(std::cin, cmd);
+		if (!std::getline(std::cin, cmd))
+			exit(1);
 		if (cmd == "ADD")
 		{
 			while (f_name.empty())
 			{
+				if (!std::cin.good())
+					exit(1);
 				std::cout << "> Enter first name: ";
-				std::getline(std::cin, f_name);
+				if (!std::getline(std::cin, f_name))
+					exit(1);
 			}
 			while (l_name.empty())
 			{
+				if (!std::cin.good())
+					exit(1);
 				std::cout << "> Enter last name: ";
-				std::getline(std::cin, l_name);
+				if (!std::getline(std::cin, l_name))
+					exit(1);
 			}
 			while (nickname.empty())
 			{
+				if (!std::cin.good())
+					exit(1);
 				std::cout << "> Enter nickname: ";
-				std::getline(std::cin, nickname);
+				if (!std::getline(std::cin, nickname))
+					exit(1);
 			}
 			while (number.empty())
 			{
+				if (!std::cin.good())
+					exit(1);
 				std::cout << "> Enter number: ";
-				std::getline(std::cin, number);
+				if (!std::getline(std::cin, number))
+					exit(1);
 			}
 			while (secret.empty())
 			{
+				if (!std::cin.good())
+					exit(1);
 				std::cout << "> Enter secret: ";
-				std::getline(std::cin, secret);
+				if (!std::getline(std::cin, secret))
+					exit(1);
 			}
 			lst[i%8].set(f_name, l_name, nickname, number, secret, i % 8);
 			f_name.clear();
@@ -75,27 +94,32 @@ int main(void)
 			{
 				if (!lst[j].get_f_name().empty())
 				{
-					std::cout << lst[j].get_index();
-					std::cout << "         |";
+					std::cout << std::right << std::setw(10) << lst[j].get_index() << "|";
 					
 					f_name = lst[j].get_f_name();
-					f_name.resize(10, ' ');
-					if (f_name[9] != ' ')
+					if (f_name.length() > 10)
+					{
+						f_name.resize(10, '\0');
 						f_name[9] = '.';
-					std::cout << f_name << "|";
+					}
+					std::cout << std::right << std::setw(10) << f_name << "|";
 					
 					l_name = lst[j].get_l_name();
-					l_name.resize(10, ' ');
-					if (l_name[9] != ' ')
+					if (l_name.length() > 10)
+					{
+						l_name.resize(10, '\0');
 						l_name[9] = '.';
-					std::cout << l_name << "|";
+					}
+					std::cout << std::right << std::setw(10) << l_name << "|";
 					
 					nickname = lst[j].get_nickname();
-					nickname.resize(10, ' ');
-					if (nickname[9] != ' ')
+					if (nickname.length() > 10)
+					{
+						nickname.resize(10, '\0');
 						nickname[9] = '.';
-					std::cout << nickname << "|" << std::endl;
-					
+					}
+					std::cout << std::right << std::setw(10) << nickname << "|" << std::endl;
+						
 					f_name.clear();
 					l_name.clear();
 					nickname.clear();
@@ -105,8 +129,11 @@ int main(void)
 			{
 				while (1)
 				{
+					if (!std::cin.good())
+						exit(1);
 					std::cout << "Enter index: ";
-					std::getline(std::cin, index);
+					if (!std::getline(std::cin, index))
+						exit(1);
 					if (index.length() == 1 && isdigit(index[0]) && stoi(index) < 8)
 					{
 						if (!lst[(stoi(index))].get_f_name().empty())

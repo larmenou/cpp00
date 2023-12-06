@@ -6,7 +6,7 @@
 /*   By: larmenou <larmenou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 10:50:10 by larmenou          #+#    #+#             */
-/*   Updated: 2023/12/01 15:00:18 by larmenou         ###   ########.fr       */
+/*   Updated: 2023/12/04 09:14:53 by larmenou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PHONEBOOK_H
 
 # include <iostream>
+# include <iomanip>
 # include <cctype>
 # include <string>
 
